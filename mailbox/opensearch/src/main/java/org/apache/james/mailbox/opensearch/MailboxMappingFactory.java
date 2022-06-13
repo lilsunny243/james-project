@@ -19,29 +19,28 @@
 
 package org.apache.james.mailbox.opensearch;
 
-import static org.apache.james.backends.es.v8.IndexCreationFactory.ANALYZER;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.BOOLEAN;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.CASE_INSENSITIVE;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.FIELDS;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.FORMAT;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.KEEP_MAIL_AND_URL;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.KEYWORD;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.LONG;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.NESTED;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.NORMALIZER;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.PROPERTIES;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.RAW;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.REQUIRED;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.ROUTING;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.SEARCH_ANALYZER;
-import static org.apache.james.backends.es.v8.IndexCreationFactory.TYPE;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.ANALYZER;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.BOOLEAN;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.CASE_INSENSITIVE;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.FIELDS;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.FORMAT;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.KEEP_MAIL_AND_URL;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.KEYWORD;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.LONG;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.NESTED;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.NORMALIZER;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.PROPERTIES;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.RAW;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.REQUIRED;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.ROUTING;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.SEARCH_ANALYZER;
+import static org.apache.james.backends.opensearch.IndexCreationFactory.TYPE;
 
 import java.io.StringReader;
 
-import org.apache.james.backends.es.v8.IndexCreationFactory;
+import org.apache.james.backends.opensearch.IndexCreationFactory;
 import org.apache.james.mailbox.opensearch.json.JsonMessageConstants;
-
-import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 
 public class MailboxMappingFactory {
     private static final String STANDARD = "standard";
@@ -49,7 +48,7 @@ public class MailboxMappingFactory {
 
     public static TypeMapping getMappingContent() {
         return new TypeMapping.Builder()
-            .withJson(new StringReader(generateMappingContent()))
+            .withJson(new StringReader(generateMappingContent())) // TODO...
             .build();
     }
     
